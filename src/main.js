@@ -32,7 +32,6 @@ Vue.component(topBar.name,topBar);
 // 引用md5
 // import md5 from 'js-md5';
 
-
 new Vue({
   router,
   store,

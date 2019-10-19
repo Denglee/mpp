@@ -34,6 +34,8 @@ export  const recRegister = params => get('/user/navlist', params);
 export  const loginApi = params => get('/login', params);
 
 // 健身首页
-// 我感觉我要跑路了 我还以为我们的接口 可以在vue里面用，然后用来做面试项目
 export const jianshen = params => post('/Applet/Index/index', params); // 导航首页
-export const jianshen2 = params => post('/Applet/Index/make/course', params); // 导航首页
+
+
+// home
+export const home = params => post('/home', params);

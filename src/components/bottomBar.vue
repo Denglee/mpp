@@ -7,6 +7,7 @@
                     <router-link :to='tabbar.routerName' @click.native="changeHash(index)">
                         <div class="iconfont" :class="tabbar.tabImgSrc"></div>
                         <div class="text">{{tabbar.title}}</div>
+
                     </router-link>
                 </li>
             </ul>
