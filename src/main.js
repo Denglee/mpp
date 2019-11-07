@@ -15,18 +15,19 @@ import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 
 // 引入自己的全局的css
-import '@/assets/css/global.scss'
-import '@/assets/js/global.js'
-// import utils  from  '@/assets/js/global.js'
+import './assets/css/global.scss'
+import './assets/js/global.js'
+// import utils  from  './assets/js/global.js'
 // Vue.prototype.utils = utils
 
 // 注册全局组件
-import bottomBar from '@/components/bottomBar'
+import bottomBar from './components/bottomBar'
 Vue.component(bottomBar.name,bottomBar);
-import topBar from '@/components/topBar'
+
+import topBar from './components/topBar'
 Vue.component(topBar.name,topBar);
 
-// import goTop from "@/components/goTop";
+// import goTop from "./components/goTop";
 // Vue.component(goTop.name,goTop)
 
 // 引用md5

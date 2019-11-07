@@ -1,6 +1,6 @@
 /*** api接口统一管理 */
 import { get, post } from './axios';
-
+import Mock from 'mockjs'
 /**
  *
  * @param {string} params
@@ -39,3 +39,8 @@ export const jianshen = params => post('/Applet/Index/index', params); // 导航
 
 // home
 export const home = params => post('/home', params);
+
+export const mockIndex = params => get('/home1', params);
+
+
+

@@ -10,7 +10,9 @@
         data() {
             return {}
         },
-        methods: {},
+        methods: {
+
+        },
         created() {
 
         },
