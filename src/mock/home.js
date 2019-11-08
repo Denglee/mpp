@@ -133,8 +133,17 @@ Mock.Random.extend({
     day: function(date) {
         return  Mock.Random.date('MM-dd');
     },
-    boo:function(date) {
+    boolType:function(date) {
         return Mock.Random.boolean( 1, 6, 1 );
+    },
+    img:function(date) {
+        return Mock.Random.dataImage('375x180');
+    },
+    color: function(date) {
+            return Mock.Random.color();
+    },
+    text:function(date) {
+        return Mock.Random.cparagraph();
     },
 })
 
@@ -144,8 +153,34 @@ Mock.mock('/home1', "get",{
     'dateArr|7': [{
         "d|+1": '@year',
         "week|+1": '@day',
-        "type": '@boo',
+        "type": '@boolType',
         "id|+1":0,
+    }],
+    'banner|2':[{
+        'link':'@img',
+        'title':'@text',
+    }],
+    lessonArr:[{
+        "pid": "2468",
+        "course_id": "622",
+        "course_name": "动感单车",
+        "coach_id": "6781",
+        "order_number": "2",
+        "up_limit": "10",
+        "price": "0.00",
+        "price_member": "0.00",
+        "st_time": "1562821200",
+        "end_time": "1562827200",
+        "del": "0",
+        "city_id": "17",
+        "suspend": "1",
+        "userids": "0",
+        "week": "4",
+        "ts": "0",
+        "ts_time": "0",
+        "seat_num": "20",
+        "seat_list": "4",
+        "courseimage": '@img'
     }],
     // "msg": "success"
 })

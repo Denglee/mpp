@@ -3,17 +3,22 @@
         <!--        <topBar :title="title"/>-->
 
         <div class='main'>
+<!--            <div @change="handleChange"  style="height: 100px;border: solid 1px red;"  >-->
+<!--                <div v-for="(item1,index) in bannerArr" :key="index">-->
+<!--                    <img :src="item1.link" alt="">-->
+<!--                    <div>wotm:{{item1.title}}</div>-->
+<!--                </div>-->
 
+<!--            </div>-->
             <!--轮播图-->
-            <mt-swipe @change="handleChange"  style="height: 100px;" >
-                <mt-swipe-item>
-                    <img :src="bannerArrs[0].banner" alt="">
+            <mt-swipe :auto="2000" style="height: 180px;">
+                <mt-swipe-item >
+                    <img :src="bannerArr[0].link" alt="">
                 </mt-swipe-item>
-                <mt-swipe-item>
-                    <img :src="bannerArrs[1].banner" alt="">
+                <mt-swipe-item >
+                    <img :src="bannerArr[1].link" alt="">
                 </mt-swipe-item>
             </mt-swipe>
-
 
             <!-- 四大导航 -->
             <div class="home-nav">
@@ -45,24 +50,24 @@
             </div>
 
             <!-- 推荐课程 -->
-            <!-- <div class='suggest-lesson'>
+             <div class='suggest-lesson'>
                  <div class='suggest-header'>
                      <div class='suggest-header-right'>推荐课程</div>
                      <div class='suggest-header-left'>
-                         <button size='mini' bindtap="goGroupCourses">更多课程</button>
+                         <button @click="goGroupCourses">更多课程</button>
                      </div>
                  </div>
                  <div class='suggest-main'>
-                     <div v-if='{{lessonArr == ""}}' class="no-data animated fadeInLeft">暂无推荐</div>
-                     <block v-else>
-                         <div  v-for="{{lessonArr}}" :key="index" class='suggest-item animated fadeIn'  bindtap='goCourseDetails' data-courseId='{{item.pid}}'>
-                             <image src='{{item.courseimage}}' lazy-load="true" mode="{{imgMode}}"></image>
+<!--                     <div v-if='{{lessonArr == ""}}' class="no-data animated fadeInLeft">暂无推荐</div>-->
+
+                         <div  v-for="(item,index) in lessonArr" :key="index" class='suggest-item animated fadeIn'  @click='goCourseDetails'>
+                             <img :src='item.courseimage' >
                              <div class='lesson-name ellipsis'>{{item.course_name}}</div>
-                             &lt;!&ndash; <div class='lesson-classify ellipsis'>{{item.week}}</div> &ndash;&gt;
+                             <!-- <div class='lesson-classify ellipsis'>{{item.week}}</div> -->
                          </div>
-                     </block>
+
                  </div>
-             </div>-->
+             </div>
 
             <!--底部导航-->
             <!--            <bottomBar/>-->
@@ -80,30 +85,34 @@
         data() {
             return {
                 title: "首页",
-                bannerArrs:[
-                    {
-                        banner:require('../assets/icon/index_course.png'),
-                        id:'1',
-                        name:'mpp',
-                    },
-                    {
-                        banner:require('../assets/icon/index_course.png'),
-                        id:'2',
-                        name:'zouderenyuoshao',
-                    },
-                ],
+                homeArr:'',
+                bannerArr:[],
+                lessonArr:[],
+                // bannerArrs:[
+                //     {
+                //         banner:require('../assets/icon/index_course.png'),
+                //         id:'1',
+                //         name:'mpp',
+                //     },
+                //     {
+                //         banner:require('../assets/icon/index_course.png'),
+                //         id:'2',
+                //         name:'zouderenyuoshao',
+                //     },
+                // ],
 
                 // 日期
                 dateNum: '',
                 dataDate: '',   //选中的日期
-                dateArr: [
-                    {
-                        d: "2019-11-07",
-                        rq: "11-07",
-                        type: 1,
-                        week: "周四",
-                    },
-                ],
+                dateArr:[],
+                // dateArr: [
+                //     {
+                //         d: "2019-11-07",
+                //         rq: "11-07",
+                //         type: 1,
+                //         week: "周四",
+                //     },
+                // ],
                 // 四大导航
                 routers: [
                     {
@@ -145,9 +154,11 @@
                     // this.dateArr = res.week;
                 });
                 mockIndex().then(res => {
-                    console.log(res.dateArr);
-                    // console.log(res.week);
-                    // this.dateArr = res.week;
+                    console.log(res);
+                    this.homeArr=res;
+                    this.dateArr=res.dateArr;
+                    this.bannerArr=res.banner;
+                    this.lessonArr=res.lessonArr;
                 })
             },
             dateActive(e) {
