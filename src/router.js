@@ -58,17 +58,17 @@ export default new Router({
 
     /** 私教 * */
     {
-      path: "/trainer/TrainerMain",   //私教首页
+      path: "/trainer/trainerMain",   //私教首页
       name: "TrainerMain",
       component: () => import(/* webpackChunkName: "trainer" */ "./views/trainer/TrainerMain")
     },
     {
-      path: "/trainer/TrainerInfo", //私教信息
+      path: "/trainer/trainerInfo", //私教信息
       name: "TrainerInfo",
       component: () => import(/* webpackChunkName: "trainer" */ "./views/trainer/TrainerInfo")
     },
     {
-      path: "/trainer/TrainerOrder",  //私教预约
+      path: "/trainer/trainerOrder",  //私教预约
       name: "TrainerOrder",
       component: () => import(/* webpackChunkName: "trainer" */ "./views/trainer/TrainerOrder")
     },
@@ -87,12 +87,12 @@ export default new Router({
       
     /** 单车 * */
     {
-      path: "/bike/BikeMain", //单车首页
-      name: "BikeMain",
+      path: "/bike/bikeMain", //单车首页
+      name: "bikeMain",
       component: () => import(/* webpackChunkName: "camp" */ "./views/bike/BikeMain")
     },
     {
-      path: "/bike/BikeChoose", //单车选座
+      path: "/bike/bikeChoose", //单车选座
       name: "BikeChoose",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route

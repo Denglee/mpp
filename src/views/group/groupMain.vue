@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div>团课首页</div>
         <bottomBar/>
     </div>
 </template>

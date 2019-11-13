@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+        私教首页
     </div>
 </template>
 

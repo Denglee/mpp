@@ -1,130 +1,95 @@
 <template>
     <div class="home">
-        <!--        <topBar :title="title"/>-->
+        <!--轮播图-->
+        <mt-swipe :auto="20000" class="home-swiper">
+            <mt-swipe-item>
+                <img :src="bannerArr[0].link" alt="">
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <img :src="bannerArr[1].link" alt="">
+            </mt-swipe-item>
+        </mt-swipe>
 
         <div class='main'>
-<!--            <div @change="handleChange"  style="height: 100px;border: solid 1px red;"  >-->
-<!--                <div v-for="(item1,index) in bannerArr" :key="index">-->
-<!--                    <img :src="item1.link" alt="">-->
-<!--                    <div>wotm:{{item1.title}}</div>-->
-<!--                </div>-->
-
-<!--            </div>-->
-            <!--轮播图-->
-            <mt-swipe :auto="2000" style="height: 180px;">
-                <mt-swipe-item >
-                    <img :src="bannerArr[0].link" alt="">
-                </mt-swipe-item>
-                <mt-swipe-item >
-                    <img :src="bannerArr[1].link" alt="">
-                </mt-swipe-item>
-            </mt-swipe>
-
             <!-- 四大导航 -->
             <div class="home-nav">
-                <div class="home-nav-item" v-for="(item,index) in routers" :key="index">
+                <router-link :to="item.url" class="home-nav-item" v-for="(item,index) in routers" :key="index">
                     <div class="home-nav-icon">
                         <img :src="item.img" alt="">
                     </div>
-                    <p class="home-nav-content">{{item.name}}</p>
-                </div>
+                    <div class="home-nav-content">{{item.name}}</div>
+                </router-link>
             </div>
 
-
-             <!--广告图片 -->
-            <div class='index-ad animated fadeIn'>
+            <!--广告图片 -->
+            <div class='home-ad animated fadeIn'>
                 <router-link to="cardMain">
                     <img src='../assets/img/index_ad.png'>
-                    <button class='btn-goVip'>开通会员</button>
+                    <mt-button size="small" class='btn-goVip'>开通会员</mt-button>
                 </router-link>
             </div>
 
             <!-- 日期 -->
             <div class='date-box'>
-
-                <div class="date-item" :class=" dateNum == index  ? 'date-active' : '' "   v-for="(item,index) in dateArr"
-                     :key="index" :data-dateId='index' :data-date='item.d' @click='dateActive'>
-                    <div class='date-week'>{{item.week}}</div>
-                    <div class='date-num'>{{item.rq}}</div>
+                <div v-if=""></div>
+                <div class="date-item" :class=" dateIndex == index  ? 'date-active' : '' " @click='dateActive($event)'
+                     v-for="(dataItem, index) in dateArr" :key="index"
+                     :data-dateWeek="dataItem.rq" :data-dateIndex="index">
+                    <div class='date-week'>{{dataItem.rq}}</div>
+                    <div class='date-num'>{{dataItem.week}}</div>
                 </div>
             </div>
 
             <!-- 推荐课程 -->
-             <div class='suggest-lesson'>
-                 <div class='suggest-header'>
-                     <div class='suggest-header-right'>推荐课程</div>
-                     <div class='suggest-header-left'>
-                         <button @click="goGroupCourses">更多课程</button>
-                     </div>
-                 </div>
-                 <div class='suggest-main'>
-<!--                     <div v-if='{{lessonArr == ""}}' class="no-data animated fadeInLeft">暂无推荐</div>-->
-
-                         <div  v-for="(item,index) in lessonArr" :key="index" class='suggest-item animated fadeIn'  @click='goCourseDetails'>
-                             <img :src='item.courseimage' >
-                             <div class='lesson-name ellipsis'>{{item.course_name}}</div>
-                             <!-- <div class='lesson-classify ellipsis'>{{item.week}}</div> -->
-                         </div>
-
-                 </div>
-             </div>
+            <div class='suggest-lesson'>
+                <div class='layout-surround'>
+                    <div>推荐课程</div>
+                    <mt-button class="btn-small" size="small" @click="goGroupCourses">更多课程</mt-button>
+                </div>
+                <div class='suggest-main'>
+                    <div v-if="lessonArr == '' " class="no-data animated fadeInLeft">暂无推荐</div>
+                    <div v-else class='suggest-item animated fadeIn' @click='goGroupInfo($event)'
+                         v-for="(lessonItem,index) in lessonArr"
+                         :key="index" :data-courseId="lessonItem.course_id">
+                        <img :src="lessonItem.courseimage">
+                        <div class='lesson-name ellipsis'>{{lessonItem.course_name}}</div>
+                    </div>
+                </div>
+            </div>
 
             <!--底部导航-->
-            <!--            <bottomBar/>-->
+            <bottomBar/>
 
         </div>
     </div>
 </template>
 
 <script>
-    import {home,mockIndex} from "@/assets/js/api"
-
 
     export default {
         name: "home",
         data() {
             return {
                 title: "首页",
-                homeArr:'',
-                bannerArr:[],
-                lessonArr:[],
-                // bannerArrs:[
-                //     {
-                //         banner:require('../assets/icon/index_course.png'),
-                //         id:'1',
-                //         name:'mpp',
-                //     },
-                //     {
-                //         banner:require('../assets/icon/index_course.png'),
-                //         id:'2',
-                //         name:'zouderenyuoshao',
-                //     },
-                // ],
 
-                // 日期
-                dateNum: '',
-                dataDate: '',   //选中的日期
-                dateArr:[],
-                // dateArr: [
-                //     {
-                //         d: "2019-11-07",
-                //         rq: "11-07",
-                //         type: 1,
-                //         week: "周四",
-                //     },
-                // ],
+                // 轮播图
+                bannerArr: [
+                    {},
+                    {},
+                ],
+
                 // 四大导航
                 routers: [
                     {
                         name: '培训',
-                        url: '',
+                        url: {name: 'drillMain',},
                         img: require('../assets/icon/index_course.png'),
                         icon: 'icon-hetong',
                         code: '1'
                     },
                     {
                         name: '私教',
-                        url: '',
+                        url: {name: 'TrainerMain',},
                         img: require('../assets/icon/index_coach.png'),
                         icon: 'icon-shangcheng3',
                         code: '2'
@@ -132,91 +97,137 @@
                     {
                         name: '训练营',
                         img: require('../assets/icon/index_training.png'),
-                        url: '',
+                        url: {name: 'campMain'},
                         icon: 'icon-shangcheng3',
                         code: '2'
                     },
                     {
                         name: '动感单车',
-                        url: '',
+                        url: {name: 'bikeMain'},
                         img: require('../assets/icon/index_bicycle.png'),
                         icon: 'icon-shangcheng3',
                         code: '3'
                     },
-                ]
+                ],
+
+                // 日期
+                dateIndex: '',  //选中的index
+                nowChooseDate: '',   //选中的日期
+                dateArr: [
+                    {
+                        d: "2019-11-11",
+                        rq: "11-11",
+                        type: 0,
+                        week: "周一",
+                    },
+                    {
+                        d: "2019-11-12",
+                        rq: "11-12",
+                        type: 0,
+                        week: "周二",
+                    },
+                    {
+                        d: "2019-11-13",
+                        rq: "11-13",
+                        type: 1,
+                        week: "周三",
+                    },
+                    {
+                        d: "2019-11-14",
+                        rq: "11-14",
+                        type: 0,
+                        week: "周四",
+                    },
+                    {
+                        d: "2019-11-15",
+                        rq: "11-15",
+                        type: 0,
+                        week: "周五",
+                    },
+                    {
+                        d: "2019-11-16",
+                        rq: "11-16",
+                        type: 0,
+                        week: "周六",
+                    },
+                    {
+                        d: "2019-11-17",
+                        rq: "11-17",
+                        type: 0,
+                        week: "周日",
+                    },
+                ],
+                lessonArr: [
+                    {
+                        "pid": "2468",
+                        "course_id": "622",
+                        "course_name": "动感单车",
+                        "coach_id": "6781",
+                        "order_number": "2",
+                        "up_limit": "10",
+                        "price": "0.00",
+                        "price_member": "0.00",
+                        "st_time": "1562821200",
+                        "end_time": "1562827200",
+                        "del": "0",
+                        "city_id": "17",
+                        "suspend": "1",
+                        "userids": "0",
+                        "week": "4",
+                        "ts": "0",
+                        "ts_time": "0",
+                        "seat_num": "20",
+                        "seat_list": "4",
+                        "courseimage": "https://spt.zmtek.net/statics/Wx/images/shouye/zanwu.jpg"
+                    },
+                    {
+                        "pid": "2469",
+                        "course_id": "623",
+                        "course_name": "动感单车11",
+                        "coach_id": "6782",
+                        "order_number": "2",
+                        "up_limit": "10",
+                        "price": "0.00",
+                        "price_member": "0.00",
+                        "st_time": "1562821200",
+                        "end_time": "1562827200",
+                        "del": "0",
+                        "city_id": "17",
+                        "suspend": "1",
+                        "userids": "0",
+                        "week": "4",
+                        "ts": "0",
+                        "ts_time": "0",
+                        "seat_num": "20",
+                        "seat_list": "4",
+                        "courseimage": "https://spt.zmtek.net/statics/Wx/images/shouye/zanwu.jpg"
+                    }
+                ],
+
             }
         },
         methods: {
-            homeInfo() {
-                home().then(res => {
-                    console.log(res);
-                    // console.log(res.week);
-                    // this.dateArr = res.week;
-                });
-                mockIndex().then(res => {
-                    console.log(res);
-                    this.homeArr=res;
-                    this.dateArr=res.dateArr;
-                    this.bannerArr=res.banner;
-                    this.lessonArr=res.lessonArr;
-                })
-            },
+            // 日期切换、选中 获取当前选中的日期 和index
             dateActive(e) {
-                console.log('s');
+                let chooseTime = e.currentTarget.dataset.dateweek,  //获取自定义的 日期
+                    chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
+                console.log(chooseTime, chooseIndex);
+                this.nowChooseDate = chooseTime;
+                this.dateIndex = chooseIndex;
+            },
+            goGroupCourses(e) {
             },
 
-            handleChange(e){
-
+            // 进入课程详情 获取要传的参数: 天数和 课程id
+            goGroupInfo(e) {
+                let chooseTime = e.currentTarget.dataset.dateweek,  //获取自定义的 日期
+                    chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
+                console.log(chooseTime, chooseIndex);
             },
         },
-        created() {
-            this.homeInfo();
-        }
+
     };
 </script>
 <style lang="scss">
-    .home {
 
-    }
-    /*banner*/
-    .mint-swipe {
-        height: 200px;
-    }
-    .mt-swipe-item:nth-child(1){
-        background-color:red;
-    }
-    .mt-swipe-item:nth-child(2){
-        background-color:blue;
-    }
-    .mt-swipe-item:nth-child(3){
-        background-color:lightblue;
-    }
-
-    /*四大导航 */
-    .home-nav {
-        display: flex;
-    }
-
-    .home-nav-item {
-        flex: 1;
-        box-sizing: border-box;
-        padding: .3rem 0;
-    }
-
-    .home-nav-icon {
-        flex: 1;
-        box-sizing: border-box;
-        padding: .2rem 0;
-        width: .8rem;
-        height: .8rem;
-        margin: 0 auto;
-    }
-
-    .home-nav-icon:active {
-        background-color: #ECECEC;
-    }
-
-    .home-nav-content {
-        flex: 10;
-    }
 </style>

@@ -1,5 +1,14 @@
 @charset "UTF-8";
 /*lideng*/
+
+//公共颜色
+$color-green:#8cc31f;
+$color-blue:#4e71fe;
+$color-gray:#b6b6b6;
+$color-white:#fff;
+$color-paleWhite:#f4f4f4;
+$color-orange:#ffa300;
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +22,7 @@
 }
 html, body {
     position: relative;
-    font-family:Source Han Sans CN ,PingFangSC-Regular,sans-serif,Helvetica Neue, Helvetica, Arial ;
+    font-family:'微软雅黑' ,PingFangSC-Regular,sans-serif,Helvetica Neue, Helvetica, Arial ;
     line-height: 1.5;
     color: #323232;
 }
@@ -35,6 +44,10 @@ a{
     color: #323232;
     cursor: pointer;
     text-decoration: none;
+}
+img{
+    display: inline-block;
+    max-width: 100%;
 }
 
 /*去除a点击之后的背景*/
@@ -64,13 +77,7 @@ input,button{
 /*============ 初始样式 到此结束 ============*/
 
 /*============ 公共部分  开始 ============*/
-//公共颜色
-$color-green:#8cc31f;
-$color-blue:#4e71fe;
-$color-gray:#b6b6b6;
-$color-white:#fff;
-$color-paleWhite:#f4f4f4;
-$color-orange:#ffa300;
+
 
 /*公共头部*/
 .header-box{
@@ -115,11 +122,11 @@ $color-orange:#ffa300;
 
 //公共底部
 .footer-box{
-    padding-top: .52rem;
+    padding-top: .6rem;
 }
 .footer-nav{
     width: 100%;
-    height: .52rem;
+    height: .6rem;
     padding: .06rem 0;
     box-sizing: border-box;
     border-top: solid 1px $color-gray;
@@ -140,6 +147,8 @@ $color-orange:#ffa300;
     }
     .iconfont{
         font-size: .2rem;
+        height: .3rem;
+        margin: 0 auto;
     }
 }
 .footer-item img{
@@ -152,9 +161,152 @@ $color-orange:#ffa300;
     color: $color-green;
 }
 .footer-nav .router-link-exact-active {
-    color: #8cc31f;
-    background-color: #fff;
+    color:  $color-green;
+    background-color:  $color-white;
+}
+
+//一左一右 环绕布局
+.layout-surround{
+    display: flex;
+    justify-content: space-between;
+    margin: .1rem 0;
+    align-items:center;
+}
+.btn-small{
+    font-size: 12px;
 }
 /*============ 公共部分  结束 ============*/
 
 /*============ 分类首页 开始 ============*/
+
+.main {
+    width: 92%;
+    margin: 0 auto;
+}
+/*banner*/
+.home-swiper {
+    height: 200px;
+}
+.mint-swipe-item:nth-child(1){
+    background-color: $color-green;
+    width: 100%;
+}
+.mint-swipe-item:nth-child(2){
+    background-color: $color-blue;
+}
+
+
+/*四大导航 */
+.home-nav {
+    display: flex;
+}
+
+.home-nav-item {
+    flex: 1;
+    box-sizing: border-box;
+    padding: .2rem 0;
+    text-align: center;
+}
+
+.home-nav-icon {
+    flex: 1;
+    box-sizing: border-box;
+    width: .6rem;
+    height: .6rem;
+    margin: 0 auto;
+}
+
+.home-nav-icon:active {
+    background-color: #ECECEC;
+}
+
+.home-nav-content {
+    margin-top: .1rem;
+
+}
+
+//广告
+.home-ad{
+    width: 100%;
+    position: relative;
+    .btn-goVip{
+        position: absolute;
+        top: .1rem;
+        right: .1rem;
+        border-radius: 6px;
+        background-color:  $color-blue;
+        color: #fff;
+        font-size: 12px;
+    }
+}
+
+
+/* 日期 */
+.date-box{
+    display: flex;
+    justify-content: space-between;
+    color:  $color-gray;
+    border-bottom: solid 1px  $color-gray;
+    margin-bottom: .2rem;
+}
+.date-item{
+    padding: .2rem .02rem;
+    text-align: center;
+}
+.date-num{
+    font-size: .12rem;
+}
+.date-week{
+    margin-bottom:.06rem;
+}
+
+.date-active{
+    color: $color-blue;
+    border-bottom: solid 2px  $color-blue;
+}
+
+/* 推荐课程 */
+.suggest-header{
+    display: flex;
+    justify-content: space-between;
+    margin:.12rem 0 .2rem;
+    height: .6rem;
+    line-height: .6rem;
+    vertical-align: middle;
+}
+
+.suggest-main{
+    /* display: flex; */
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: space-around; */
+    /* align-content: flex-start; */
+}
+.suggest-item{
+    flex: 0 0 32%;
+    box-sizing: border-box;
+    /* border: solid 1px #ddd; */
+    margin-right: 2%;
+    margin-bottom:.3rem;
+    width: 0;
+    text-align: center;
+}
+.suggest-main>.suggest-item:nth-child(3n){
+    margin-right: 0;
+}
+.suggest-item image{
+    display: block;
+    width: 100%;
+    height: 2.2rem;
+    border-radius: 8px;
+    /* border: solid 1px #ddd; */
+}
+.lesson-name{
+    margin: .1rem 0 8px;
+    font-weight: bold;
+}
+.lesson-classify{
+    font-size: 12px;
+    color: #666667;
+}

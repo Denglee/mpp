@@ -1,12 +1,12 @@
 <template>
     <div>
-        
+        单车首页
     </div>
 </template>
 
 <script>
     export default {
-        name: "BikeMain",
+        name: "bikeMain",
         data() {
             return {}
         },

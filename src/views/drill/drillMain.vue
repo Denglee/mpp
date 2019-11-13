@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+        培训首页
     </div>
 </template>
 

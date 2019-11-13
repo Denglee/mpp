@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+        训练营首页
     </div>
 </template>
 

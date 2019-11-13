@@ -1,5 +1,6 @@
 <template>
     <div>
+        卡首页
         <bottomBar/>
     </div>
 </template>

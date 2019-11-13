@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div>个人中心</div>
         <bottomBar/>
     </div>
 </template>

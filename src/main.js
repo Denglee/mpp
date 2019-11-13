@@ -16,6 +16,7 @@ Vue.use(MintUI)
 
 // 引入自己的全局的css
 import './assets/css/global.scss'
+import './assets/css/animate37.css'
 import './assets/js/global.js'
 // import utils  from  './assets/js/global.js'
 // Vue.prototype.utils = utils
