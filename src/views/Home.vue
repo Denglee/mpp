@@ -32,7 +32,7 @@
             <!-- 日期 -->
             <div class='date-box'>
                 <div v-if=""></div>
-                <div class="date-item" :class=" dateIndex == index  ? 'date-active' : '' " @click='dateActive($event)'
+                <div class="date-item" :class="dateIndex == index  ? 'date-active' : '' " @click='dateActive($event)'
                      v-for="(dataItem, index) in dateArr" :key="index"
                      :data-dateWeek="dataItem.rq" :data-dateIndex="index">
                     <div class='date-week'>{{dataItem.rq}}</div>
