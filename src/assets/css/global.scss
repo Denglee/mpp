@@ -10,6 +10,7 @@ $color-paleWhite:#f4f4f4;
 $color-orange:#ffa300;
 
 $borderBlue:solid 1px $color-blue;
+$borderBorB:solid 1px $color-paleWhite;
 * {
     margin: 0;
     padding: 0;
@@ -115,13 +116,7 @@ input,button{
     left: 0;
 }
 
-.container{
-    position: relative;
-    top: 2rem;
-    padding: 0;
-    margin: 0;
-    /*font-size: 0.4rem;*/
-}
+
 
 //公共底部
 .footer-box{
