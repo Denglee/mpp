@@ -238,7 +238,6 @@
                 this.$router.push({
                     path: `/groupInfo/${courseId}`,
                 });
-
             },
         },
 
