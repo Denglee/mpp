@@ -1,0 +1,173 @@
+@import "global";
+
+/*============ 分类首页 开始 ============*/
+.main {
+  width: 92%;
+  margin: 0 auto;
+}
+/*banner*/
+.home-swiper {
+  height: 200px;
+}
+.mint-swipe-item:nth-child(1){
+  background-color: $color-green;
+  width: 100%;
+}
+.mint-swipe-item:nth-child(2){
+  background-color: $color-blue;
+}
+
+
+/*四大导航 */
+.home-nav {
+  display: flex;
+}
+
+.home-nav-item {
+  flex: 1;
+  box-sizing: border-box;
+  padding: .2rem 0;
+  text-align: center;
+}
+
+.home-nav-icon {
+  flex: 1;
+  box-sizing: border-box;
+  width: .6rem;
+  height: .6rem;
+  margin: 0 auto;
+}
+
+.home-nav-icon:active {
+  background-color: #ECECEC;
+}
+
+.home-nav-content {
+  margin-top: .1rem;
+
+}
+
+//广告
+.home-ad{
+  width: 100%;
+  position: relative;
+  .btn-goVip{
+    position: absolute;
+    top: .1rem;
+    right: .1rem;
+    border-radius: 6px;
+    background-color:  $color-blue;
+    color: #fff;
+    font-size: 12px;
+  }
+}
+
+
+/* 日期 */
+.date-box{
+  display: flex;
+  justify-content: space-between;
+  color:  $color-gray;
+  border-bottom: solid 1px  $color-gray;
+  margin-bottom: .2rem;
+}
+.date-item{
+  padding: .2rem .02rem;
+  text-align: center;
+}
+.date-num{
+  font-size: .12rem;
+}
+.date-week{
+  margin-bottom:.06rem;
+}
+
+.date-active{
+  color: $color-blue;
+  border-bottom: solid 2px  $color-blue;
+}
+
+/* 推荐课程 */
+.suggest-header{
+  display: flex;
+  justify-content: space-between;
+  margin:.12rem 0 .2rem;
+  height: .6rem;
+  line-height: .6rem;
+  vertical-align: middle;
+}
+
+.suggest-main{
+  /* display: flex; */
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  /* justify-content: space-around; */
+  /* align-content: flex-start; */
+}
+.suggest-item{
+  flex: 0 0 32%;
+  box-sizing: border-box;
+  /* border: solid 1px #ddd; */
+  margin-right: 2%;
+  margin-bottom:.3rem;
+  width: 0;
+  text-align: center;
+}
+.suggest-main>.suggest-item:nth-child(3n){
+  margin-right: 0;
+}
+.suggest-item image{
+  display: block;
+  width: 100%;
+  height: 2.2rem;
+  border-radius: 8px;
+  /* border: solid 1px #ddd; */
+}
+.lesson-name{
+  margin: .1rem 0 8px;
+  font-weight: bold;
+}
+.lesson-classify{
+  font-size: 12px;
+  color: #666667;
+}
+
+
+/*============ 课程详情 开始 ============*/
+
+.gInfo-main{
+  position: relative;
+}
+.gInfo-main .mint-navbar{
+  /*border: solid 1px red;*/
+  /*position: absolute;*/
+  /*top: -10px;*/
+  margin-top: -20px;
+  position: relative;
+  z-index: 111;
+  border-radius: 10px 10px 0 0;
+}
+.gInfo-main .mint-tab-item-label{
+  font-size: .14rem;
+}
+/*增加tab默认选中样式*/
+.gInfo-main .mint-navbar .mint-tab-item .is-selected{
+  margin-bottom: 0;
+}
+.gInfo-btnGroup{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: .1rem 4%;
+  justify-content: space-between;
+  background-color: $color-paleWhite;
+  height: .6rem;
+}
+.gInfo-btnGroup button{
+    border-radius: .4rem;
+  border: $borderBlue;
+}

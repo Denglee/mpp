@@ -6,7 +6,7 @@
             <div v-for="(item,index) in starInp_selected" :key="index">
                 <img @click='chooseStar($event)' :data-starId='index+1' :data-starState='star_select' src='../../assets/img/icon_star_selected.png'>
             </div>
-            <div v-for=" (item,index) in starInp_noSelected" :key="index">
+            <div v-for=" (item,index) in starInp_noSelected" :key="index+1">
                 <img @click='chooseStar($event)' :data-starId='index+1' :data-starState='star_noSelect' src='../../assets/img/icon_star.png'>
             </div>
             <text class="valuate-score">{{valuateScore}}</text>
@@ -116,7 +116,7 @@
                 }
 
                 this.starInp_selected= starInp_selected;
-                this.starInp_noSelected= 5 - starInp_selected;
+                this.starInp_noSelected= (5 - starInp_selected);
 
             },
         },

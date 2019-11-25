@@ -1,14 +1,14 @@
 <template>
     <div class="home">
         <!--轮播图-->
-        <mt-swipe :auto="20000" class="home-swiper">
-            <mt-swipe-item>
-                <img :src="bannerArr[0].link" alt="">
-            </mt-swipe-item>
-            <mt-swipe-item>
-                <img :src="bannerArr[1].link" alt="">
-            </mt-swipe-item>
-        </mt-swipe>
+        <van-swipe :autoplay="6000">
+            <van-swipe-item v-for="(image, index) in bannerArr" :key="index">
+                <van-image
+                        :src="image"
+                        v-lazy="image"
+                        fit="cover"/>
+            </van-swipe-item>
+        </van-swipe>
 
         <div class='main'>
             <!-- 四大导航 -->
@@ -25,7 +25,7 @@
             <div class='home-ad animated fadeIn'>
                 <router-link to="cardMain">
                     <img src='../assets/img/index_ad.png'>
-                    <mt-button size="small" class='btn-goVip'>开通会员</mt-button>
+                    <van-button size="small" class='btn-goVip'>开通会员</van-button>
                 </router-link>
             </div>
 
@@ -44,16 +44,31 @@
             <div class='suggest-lesson'>
                 <div class='layout-surround'>
                     <div>推荐课程</div>
-                    <mt-button class="btn-small" size="small" @click="goGroupCourses">更多课程</mt-button>
+                    <van-button class="btn-small" size="small" @click="goGroupCourses">更多课程</van-button>
                 </div>
                 <div class='suggest-main'>
                     <div v-if="lessonArr == '' " class="no-data animated fadeInLeft">暂无推荐</div>
+
+                    <!--跳转详情页方式一：  点击事件  $router.push-->
                     <div v-else class='suggest-item animated fadeIn' @click='goGroupInfo($event)'
                          v-for="(lessonItem,index) in lessonArr"
-                         :key="index" :data-courseId="lessonItem.course_id">
+                         :key="index"
+                         :data-courseId="lessonItem.course_id"
+                    >
                         <img :src="lessonItem.courseimage">
                         <div class='lesson-name ellipsis'>{{lessonItem.course_name}}</div>
                     </div>
+
+                    <!--跳转详情页方式一： router-link +params/qpuery 跳转 -->
+                  <!--  query 后的键值被放在url中，形式类似以get,明文可以。
+                    params 的键值对在请求头header中可以查看到，不放在url中。
+                    path 和 params 不能同时使用。如果要用 params，请使用 name-->
+                    <!--<router-link :to="{name: 'groupInfo', params: { id: lessonItem.course_id }}"
+                                 v-else class='suggest-item animated fadeIn'
+                                 v-for="(lessonItem,index) in lessonArr"
+                                 :key="index">
+                        {{lessonItem.course_name}}
+                    </router-link>-->
                 </div>
             </div>
 
@@ -72,10 +87,12 @@
             return {
                 title: "首页",
 
+                imgContain:'contain',
+
                 // 轮播图
                 bannerArr: [
-                    {},
-                    {},
+                    'https://img.yzcdn.cn/vant/apple-1.jpg',
+                    'https://img.yzcdn.cn/vant/apple-2.jpg',
                 ],
 
                 // 四大导航
@@ -220,14 +237,21 @@
 
             // 进入课程详情 获取要传的参数: 天数和 课程id
             goGroupInfo(e) {
-                let chooseTime = e.currentTarget.dataset.dateweek,  //获取自定义的 日期
-                    chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
-                console.log(chooseTime, chooseIndex);
+                let courseId = e.currentTarget.dataset.courseid;  //获取自定义的 课程id
+                    // chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
+                console.log(courseId);
+                this.$router.push({
+                    path: `/groupInfo/${courseId}`,
+                });
+
             },
         },
 
     };
 </script>
 <style lang="scss">
-
+    .van-swipe{
+        height: 1rem;
+        border: solid 1px red!important;
+    }
 </style>
