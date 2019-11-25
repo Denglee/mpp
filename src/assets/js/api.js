@@ -27,20 +27,16 @@ export const index2 = params => post('http://www.gddcdz.cn:10009/index.php?c=eqs
 // export  const recRegister =params => get('/user/navlist', params);
 
 // 获取nav
-export  const recRegister = params => get('/user/navlist', params);
+// export  const recRegister = params => get('/user/navlist', params);
 
 
 // 登录
 export  const loginApi = params => get('/login', params);
 
 // 健身首页
-export const jianshen = params => post('/Applet/Index/index', params); // 导航首页
+export const homeApi = params => post('/Applet/Index/index', params); // 导航首页
 
 
-// home
-export const home = params => post('/home', params);
-
-export const mockIndex = params => get('/home1', params);
 
 
 

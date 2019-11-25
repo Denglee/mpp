@@ -1,10 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-
 Vue.use(Router);
-
-
 
   const routes= [
     {
@@ -91,7 +88,7 @@ Vue.use(Router);
       }
     },
     {
-      path: "/trainer/trainerInfo", //私教信息
+      path: "/trainer/trainerInfo/:id", //私教信息
       name: "TrainerInfo",
       component: () => import( "./views/trainer/TrainerInfo"),
       meta: {
