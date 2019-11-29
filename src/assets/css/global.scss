@@ -9,8 +9,46 @@ $color-white:#fff;
 $color-paleWhite:#f4f4f4;
 $color-orange:#ffa300;
 
-$borderBlue:solid 1px $color-blue;
-$borderBorB:solid 1px $color-paleWhite;
+//$borderBlue:solid 1px $color-blue;
+//$borderBorB:solid 1px $color-paleWhite;
+
+//背景路径
+$bg-path: "../img";
+//.card{
+//    background: url("#{$bg-path}/card-bg.png" center center);
+//}
+
+//嵌入
+@mixin borderRadius4($conor: 4px){ // 定义 mixin 并设置默认值 5px
+    -webkit-border-radius: $conor;
+    -moz-border-radius: $conor;
+    border-radius: $conor;
+}
+@mixin borderBlue(){ // 定义 mixin 并设置默认值 5px
+   border:solid 1px $color-blue;
+}
+@mixin borderBorBot(){ // 定义 mixin 并设置默认值 5px
+    border-bottom:solid 1px $color-paleWhite;
+}
+@mixin marginTop15{
+    margin-top: .15rem;
+}
+@mixin marginTop20{
+    margin-top: .2rem;
+}
+@mixin btn{
+    border: none;
+    background: none;
+    outline: none;
+}
+@mixin  btn-blue{
+    @include  btn();
+    background-color: $color-blue;
+    color: $white;
+    @include borderRadius4();
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -83,7 +121,7 @@ input,button{
 
 /*公共头部*/
 .header-box{
-    padding-bottom: .42rem;
+    padding-bottom: .5rem;
 }
 .header-nav{
     width: 100%;
@@ -93,15 +131,18 @@ input,button{
     z-index: 1111;
 }
 .header-top{
-    background-color: $color-green;
+    background-color: $color-blue; /* 不支持线性的时候显示 */
+    background-image: linear-gradient(to right, #8C16FF , #3497FD);
     position: relative;
     color: $color-white;
-    height: .42rem;
-    line-height: .42rem;
+    height: .5rem;
+    line-height: .5rem;
     text-align: center;
+    font-size: 0.16rem;
+    font-weight: bold;
     .iconfont{
-        height: .42rem;
-        line-height: .42rem;
+        height: .5rem;
+        line-height: .5rem;
         position: absolute;
         left: 0;
         font-size: .2rem;
@@ -156,10 +197,10 @@ input,button{
     font-size: .14rem;
 }
 .footer-active{
-    color: $color-green;
+    color: $color-blue;
 }
 .footer-nav .router-link-exact-active {
-    color:  $color-green;
+    color:  $color-blue;
     background-color:  $color-white;
 }
 
@@ -169,6 +210,12 @@ input,button{
     justify-content: space-between;
     margin: .1rem 0;
     align-items:center;
+}
+.noData{
+    text-align: center;
+    color: $color-gray;
+    width: 100%;
+    @include  marginTop15();
 }
 .btn-small{
     font-size: 12px;

@@ -1,15 +1,23 @@
 <template>
     <div class="home">
-        <!--轮播图-->
-        <van-swipe :autoplay="6000">
-            <van-swipe-item v-for="(image, index) in bannerArr" :key="index">
-                <van-image
-                        :src="image"
-                        fit="cover"/>
-            </van-swipe-item>
-        </van-swipe>
+
+        <header class="header-box">
+            <nav class="header-nav">
+                <div class="header-top">首页</div>
+            </nav>
+        </header>
 
         <div class='main'>
+
+            <!--轮播图-->
+            <van-swipe :autoplay="6000" class="home-swiper">
+                <van-swipe-item v-for="(image, index) in bannerArr" :key="index">
+                    <van-image
+                            :src="image"
+                            fit="cover"/>
+                </van-swipe-item>
+            </van-swipe>
+
             <!-- 四大导航 -->
             <div class="home-nav">
                 <router-link :to="item.url" class="home-nav-item" v-for="(item,index) in routers" :key="index">
@@ -30,10 +38,9 @@
 
             <!-- 日期 -->
             <div class='date-box'>
-                <div v-if=""></div>
                 <div class="date-item" :class="dateIndex == index  ? 'date-active' : '' " @click='dateActive($event)'
                      v-for="(dataItem, index) in dateArr" :key="index"
-                     :data-dateWeek="dataItem.rq" :data-dateIndex="index">
+                     :data-dateWeek="dataItem.d" :data-dateIndex="index">
                     <div class='date-week'>{{dataItem.rq}}</div>
                     <div class='date-num'>{{dataItem.week}}</div>
                 </div>
@@ -46,7 +53,8 @@
                     <van-button class="btn-small" size="small" @click="goGroupCourses">更多课程</van-button>
                 </div>
                 <div class='suggest-main'>
-                    <div v-if="lessonArr == '' " class="no-data animated fadeInLeft">暂无推荐</div>
+
+                    <div v-if="lessonArr == '' "  class="noData animated fadeInLeft">暂无推荐</div>
 
                     <!--跳转详情页方式一：  点击事件  $router.push-->
                     <div v-else class='suggest-item animated fadeIn' @click='goGroupInfo($event)'
@@ -79,22 +87,18 @@
 </template>
 
 <script>
-    import {homeApi} from "@/assets/js/api"
+    import {homeApi} from "@/assets/js/api"  //引入首页接口
     export default {
         name: "home",
         data() {
             return {
-                title: "首页",
-
+                visible:true,
                 imgContain: 'contain',
 
-                // 轮播图
-                bannerArr: [
-                    'https://img.yzcdn.cn/vant/apple-1.jpg',
-                    'https://img.yzcdn.cn/vant/apple-2.jpg',
-                ],
+                /*轮播图*/
+                bannerArr: [],
 
-                // 四大导航
+                /*四大导航*/
                 routers: [
                     {
                         name: '培训',
@@ -126,115 +130,33 @@
                     },
                 ],
 
-                // 日期
+                /*日期*/
                 dateIndex: '',  //选中的index
                 nowChooseDate: '',   //选中的日期
-                dateArr: [
-                    {
-                        d: "2019-11-11",
-                        rq: "11-11",
-                        type: 0,
-                        week: "周一",
-                    },
-                    {
-                        d: "2019-11-12",
-                        rq: "11-12",
-                        type: 0,
-                        week: "周二",
-                    },
-                    {
-                        d: "2019-11-13",
-                        rq: "11-13",
-                        type: 1,
-                        week: "周三",
-                    },
-                    {
-                        d: "2019-11-14",
-                        rq: "11-14",
-                        type: 0,
-                        week: "周四",
-                    },
-                    {
-                        d: "2019-11-15",
-                        rq: "11-15",
-                        type: 0,
-                        week: "周五",
-                    },
-                    {
-                        d: "2019-11-16",
-                        rq: "11-16",
-                        type: 0,
-                        week: "周六",
-                    },
-                    {
-                        d: "2019-11-17",
-                        rq: "11-17",
-                        type: 0,
-                        week: "周日",
-                    },
-                ],
-                lessonArr: [
-                    {
-                        "pid": "2468",
-                        "course_id": "622",
-                        "course_name": "动感单车",
-                        "coach_id": "6781",
-                        "order_number": "2",
-                        "up_limit": "10",
-                        "price": "0.00",
-                        "price_member": "0.00",
-                        "st_time": "1562821200",
-                        "end_time": "1562827200",
-                        "del": "0",
-                        "city_id": "17",
-                        "suspend": "1",
-                        "userids": "0",
-                        "week": "4",
-                        "ts": "0",
-                        "ts_time": "0",
-                        "seat_num": "20",
-                        "seat_list": "4",
-                        "courseimage": "https://spt.zmtek.net/statics/Wx/images/shouye/zanwu.jpg"
-                    },
-                    {
-                        "pid": "2469",
-                        "course_id": "623",
-                        "course_name": "动感单车11",
-                        "coach_id": "6782",
-                        "order_number": "2",
-                        "up_limit": "10",
-                        "price": "0.00",
-                        "price_member": "0.00",
-                        "st_time": "1562821200",
-                        "end_time": "1562827200",
-                        "del": "0",
-                        "city_id": "17",
-                        "suspend": "1",
-                        "userids": "0",
-                        "week": "4",
-                        "ts": "0",
-                        "ts_time": "0",
-                        "seat_num": "20",
-                        "seat_list": "4",
-                        "courseimage": "https://spt.zmtek.net/statics/Wx/images/shouye/zanwu.jpg"
-                    }
-                ],
+                dateArr: [],
 
+                /*课程*/
+                lessonArr: [],
             }
         },
         methods: {
-            // 日期切换、选中 获取当前选中的日期 和index
+
+            /*日期切换、选中 获取当前选中的日期 和index*/
             dateActive(e) {
                 let chooseTime = e.currentTarget.dataset.dateweek,  //获取自定义的 日期
                     chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
                 console.log(chooseTime, chooseIndex);
                 this.nowChooseDate = chooseTime;
                 this.dateIndex = chooseIndex;
-            },
-            goGroupCourses(e) {
+                this.getHomeLesson(chooseTime);
             },
 
-            // 进入课程详情 获取要传的参数: 天数和 课程id
+            /*跳转到课程详情*/
+            goGroupCourses(e) {
+
+            },
+
+            /*进入课程详情 获取要传的参数: 天数和 课程id*/
             goGroupInfo(e) {
                 let courseId = e.currentTarget.dataset.courseid;  //获取自定义的 课程id
                 // chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
@@ -244,13 +166,30 @@
                 });
             },
 
-
-            homeInfo(){
+            /*获取课程数据*/
+            getHomeLesson(day){
+                let cityId=this.GLOBAL.cityId;
                 homeApi({
-                        day:'2019-11-25',
-                        city_id:2,
-                 }).then((res) =>{
+                    day: day,
+                    city_id: cityId,
+                }).then((res) => {
+                    console.log(res.data);
+                    this.lessonArr = res.data;
+                })
+            },
+
+            /*获取首页数据*/
+            homeInfo() {
+                let cityId=this.GLOBAL.cityId;
+                let getToday=this.GLOBAL.getToday;
+                console.log(cityId,getToday);
+                homeApi({
+                    day: getToday,
+                    city_id: cityId,
+                }).then((res) => {
                     console.log(res);
+                    this.dateArr = res.week;  //获取日期
+                    this.bannerArr = res.image;
                 })
             },
         },
@@ -262,8 +201,97 @@
     };
 </script>
 <style lang="scss">
-    .van-swipe {
-        height: 1rem;
-        border: solid 1px red !important;
-    }
+
 </style>
+
+
+<!--/*dateArr: [-->
+<!--{-->
+<!--d: "2019-11-11",-->
+<!--rq: "11-11",-->
+<!--type: 0,-->
+<!--week: "周一",-->
+<!--},-->
+<!--{-->
+<!--d: "2019-11-12",-->
+<!--rq: "11-12",-->
+<!--type: 0,-->
+<!--week: "周二",-->
+<!--},-->
+<!--{-->
+<!--d: "2019-11-13",-->
+<!--rq: "11-13",-->
+<!--type: 1,-->
+<!--week: "周三",-->
+<!--},-->
+<!--{-->
+<!--d: "2019-11-14",-->
+<!--rq: "11-14",-->
+<!--type: 0,-->
+<!--week: "周四",-->
+<!--},-->
+<!--{-->
+<!--d: "2019-11-15",-->
+<!--rq: "11-15",-->
+<!--type: 0,-->
+<!--week: "周五",-->
+<!--},-->
+<!--{-->
+<!--d: "2019-11-16",-->
+<!--rq: "11-16",-->
+<!--type: 0,-->
+<!--week: "周六",-->
+<!--},-->
+<!--{-->
+<!--d: "2019-11-17",-->
+<!--rq: "11-17",-->
+<!--type: 0,-->
+<!--week: "周日",-->
+<!--},-->
+<!--],*/-->
+<!--/*lessonArr: [-->
+<!--{-->
+<!--"pid": "2468",-->
+<!--"course_id": "622",-->
+<!--"course_name": "动感单车",-->
+<!--"coach_id": "6781",-->
+<!--"order_number": "2",-->
+<!--"up_limit": "10",-->
+<!--"price": "0.00",-->
+<!--"price_member": "0.00",-->
+<!--"st_time": "1562821200",-->
+<!--"end_time": "1562827200",-->
+<!--"del": "0",-->
+<!--"city_id": "17",-->
+<!--"suspend": "1",-->
+<!--"userids": "0",-->
+<!--"week": "4",-->
+<!--"ts": "0",-->
+<!--"ts_time": "0",-->
+<!--"seat_num": "20",-->
+<!--"seat_list": "4",-->
+<!--"courseimage": "https://spt.zmtek.net/statics/Wx/images/shouye/zanwu.jpg"-->
+<!--},-->
+<!--{-->
+<!--"pid": "2469",-->
+<!--"course_id": "623",-->
+<!--"course_name": "动感单车11",-->
+<!--"coach_id": "6782",-->
+<!--"order_number": "2",-->
+<!--"up_limit": "10",-->
+<!--"price": "0.00",-->
+<!--"price_member": "0.00",-->
+<!--"st_time": "1562821200",-->
+<!--"end_time": "1562827200",-->
+<!--"del": "0",-->
+<!--"city_id": "17",-->
+<!--"suspend": "1",-->
+<!--"userids": "0",-->
+<!--"week": "4",-->
+<!--"ts": "0",-->
+<!--"ts_time": "0",-->
+<!--"seat_num": "20",-->
+<!--"seat_list": "4",-->
+<!--"courseimage": "https://spt.zmtek.net/statics/Wx/images/shouye/zanwu.jpg"-->
+<!--}-->
+<!--],*/-->

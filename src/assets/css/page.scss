@@ -7,7 +7,9 @@
 }
 /*banner*/
 .home-swiper {
-  height: 200px;
+  height: 1.02rem;
+  @include borderRadius4();
+  @include marginTop15;
 }
 .mint-swipe-item:nth-child(1){
   background-color: $color-green;
@@ -33,8 +35,8 @@
 .home-nav-icon {
   flex: 1;
   box-sizing: border-box;
-  width: .6rem;
-  height: .6rem;
+  width: .4rem;
+  height: .4rem;
   margin: 0 auto;
 }
 
@@ -72,7 +74,7 @@
   margin-bottom: .2rem;
 }
 .date-item{
-  padding: .2rem .02rem;
+  padding: .1rem .02rem;
   text-align: center;
 }
 .date-num{
@@ -85,6 +87,7 @@
 .date-active{
   color: $color-blue;
   border-bottom: solid 2px  $color-blue;
+  margin-bottom: -1px;
 }
 
 /* 推荐课程 */
@@ -169,7 +172,7 @@
 }
 .gInfo-btnGroup button{
     border-radius: .4rem;
-  border: $borderBlue;
+    @include borderBlue();
 }
 
 /*============ 教练 开始 ============*/
@@ -177,7 +180,7 @@
 //首页
 .trainer-list {
   .van-row{
-    border-bottom: $borderBorB;
+    @include borderBorBot();
     padding: .1rem 0;
     align-items: center;
   }
@@ -236,7 +239,7 @@
   position: relative;
 }
 .tInfo-item{
-  border-bottom:$borderBorB;
+  @include  borderBorBot();
   padding-bottom: .1rem;
   margin-bottom: .1rem;
 
