@@ -242,5 +242,50 @@
   @include  borderBorBot();
   padding-bottom: .1rem;
   margin-bottom: .1rem;
+}
 
+
+/*== 个人中心 ==*/
+//首页
+.userHeader-bg{
+  height: .6rem;
+  background-color: $color-blue;
+}
+@mixin userBoxShow($num: 10px){
+  box-shadow:2px 2px 10px #ddd;
+  border-radius:$num;
+  margin-bottom: .2rem;
+}
+
+.user-header{
+  position: relative;
+
+  .userHead-box{
+    //position: absolute;
+    margin-top: -.3rem;
+    width: 100%;
+    padding: .1rem .2rem;
+    background-color:$color-white;
+    @include userBoxShow();
+  }
+  .user-header{
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+  }
+  .user-tel{
+    @include samllGray();
+  }
+}
+.user-link{
+  li{
+    padding: 2% 4%;
+    @include userBoxShow();
+    .van-cell{
+      padding: .12rem 0;
+    }
+    .van-cell:not(:last-child)::after{
+      left: 0;
+    }
+  }
 }

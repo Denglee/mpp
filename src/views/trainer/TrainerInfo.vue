@@ -4,7 +4,7 @@
         <div class="tInfo-header tInfo-item">
             <van-row type="flex">
                 <van-col span="6" class="">
-                    <img src="../../assets/img/coueseBanner.png" alt="">
+                    <img :src="banner" alt="" @click="getImg(banner,1)">
                 </van-col>
                 <van-col span="18" class="">
                     <div class="trainer-name">教练名字</div>
@@ -91,11 +91,22 @@
             return {
                 title:'私教详情',
                 routerName:'TrainerMain',
+                banner:require('../../assets/img/coueseBanner.png'),
             }
         },
         methods: {
+<<<<<<< HEAD
+            getImg(images,index) {
+                ImagePreview({
+                    images: images,
+                    showIndex: true,
+                    loop: false,
+                    startPosition: index
+                });
+=======
             goTrainerInfo(e){
                 console.log();
+>>>>>>> 7f824b7558b303fb50662862f0490452995b1164
             },
         },
         created() {
