@@ -1,6 +1,14 @@
 <template>
     <div>
-        卡首页
+
+        <van-tabs v-model="active">
+            <van-tab title="次卡">
+                <div>
+                    <div></div>
+                </div>
+            </van-tab>
+            <van-tab title="期限卡">内容 2</van-tab>
+        </van-tabs>
         <bottomBar/>
     </div>
 </template>
@@ -9,7 +17,10 @@
     export default {
         name: "cardMain",
         data() {
-            return {}
+            return {
+                active:1,
+
+            }
         },
         methods: {
 
