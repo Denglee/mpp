@@ -1,12 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-
 Vue.use(Router);
 
-
-
-const   routes = [
+  const routes= [
     {
       path: '*',
       redirect: '/home'
@@ -14,10 +11,7 @@ const   routes = [
     {
       path: "/home",
       name: "home",
-      component: Home,
-      meta: {
-        title: '首页'
-      }
+      component: Home
     },
 
     /** 团课 * */
@@ -58,7 +52,7 @@ const   routes = [
 
     /** 我的 * */
     {
-      path: "/user/userMain", //个人中心 首页
+      path: "/user/userMain", //我的 首页
       name: "userMain",
       component: () => import("./views/user/userMain"),
       meta: {
@@ -72,7 +66,7 @@ const   routes = [
       name: "drillMain",
       component: () => import( "./views/drill/drillMain"),
       meta: {
-        title: '培训'
+        title: '培训首页'
       }
     },
     {
@@ -80,7 +74,7 @@ const   routes = [
       name: "drillInfo",
       component: () => import("./views/drill/drillInfo"),
       meta: {
-        title: '培训 详情'
+        title: '培训详情'
       }
     },
 
@@ -94,7 +88,7 @@ const   routes = [
       }
     },
     {
-      path: "/trainer/trainerInfo/:trainerId", //私教信息
+      path: "/trainer/trainerInfo/:id", //私教信息
       name: "TrainerInfo",
       component: () => import( "./views/trainer/TrainerInfo"),
       meta: {
@@ -148,28 +142,7 @@ const   routes = [
         title: '单车选座'
       }
     }
-  ];
-
-
-// // add route path
-// routes.forEach(route => {
-//   route.path = route.path || '/' + (route.name || '');
-// });
-//
-// const router = new Router({ routes });
-//
-// router.beforeEach((to, from, next) => {
-//   const title = to.meta && to.meta.title;
-//   if (title) {
-//     document.title = title;
-//   }
-//   next();
-// });
-//
-// export {
-//   router
-// };
-
+  ]
 
 
 // add route path
@@ -190,4 +163,3 @@ router.beforeEach((to, from, next) => {
 export {
   router
 };
-

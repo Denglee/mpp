@@ -1,9 +1,11 @@
 <template>
     <div class="home">
         <!--轮播图-->
-        <van-swipe :autoplay="3000">
+        <van-swipe :autoplay="6000">
             <van-swipe-item v-for="(image, index) in bannerArr" :key="index">
-<!--                <img v-lazy="image" />-->
+                <van-image
+                        :src="image"
+                        fit="cover"/>
             </van-swipe-item>
         </van-swipe>
 
@@ -57,9 +59,9 @@
                     </div>
 
                     <!--跳转详情页方式一： router-link +params/qpuery 跳转 -->
-                  <!--  query 后的键值被放在url中，形式类似以get,明文可以。
-                    params 的键值对在请求头header中可以查看到，不放在url中。
-                    path 和 params 不能同时使用。如果要用 params，请使用 name-->
+                    <!--  query 后的键值被放在url中，形式类似以get,明文可以。
+                      params 的键值对在请求头header中可以查看到，不放在url中。
+                      path 和 params 不能同时使用。如果要用 params，请使用 name-->
                     <!--<router-link :to="{name: 'groupInfo', params: { id: lessonItem.course_id }}"
                                  v-else class='suggest-item animated fadeIn'
                                  v-for="(lessonItem,index) in lessonArr"
@@ -77,17 +79,19 @@
 </template>
 
 <script>
-
+    import {homeApi} from "@/assets/js/api"
     export default {
         name: "home",
         data() {
             return {
                 title: "首页",
 
+                imgContain: 'contain',
+
                 // 轮播图
                 bannerArr: [
-                    {},
-                    {},
+                    'https://img.yzcdn.cn/vant/apple-1.jpg',
+                    'https://img.yzcdn.cn/vant/apple-2.jpg',
                 ],
 
                 // 四大导航
@@ -233,16 +237,33 @@
             // 进入课程详情 获取要传的参数: 天数和 课程id
             goGroupInfo(e) {
                 let courseId = e.currentTarget.dataset.courseid;  //获取自定义的 课程id
-                    // chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
+                // chooseIndex = e.currentTarget.dataset.dateindex; //获取自定义的index
                 console.log(courseId);
                 this.$router.push({
                     path: `/groupInfo/${courseId}`,
                 });
             },
+
+
+            homeInfo(){
+                homeApi({
+                        day:'2019-11-25',
+                        city_id:2,
+                 }).then((res) =>{
+                    console.log(res);
+                })
+            },
         },
+
+        created() {
+            this.homeInfo();
+        }
 
     };
 </script>
 <style lang="scss">
-
+    .van-swipe {
+        height: 1rem;
+        border: solid 1px red !important;
+    }
 </style>
