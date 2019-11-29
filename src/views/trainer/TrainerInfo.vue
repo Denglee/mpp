@@ -95,7 +95,7 @@
             }
         },
         methods: {
-<<<<<<< HEAD
+
             getImg(images,index) {
                 ImagePreview({
                     images: images,
@@ -103,10 +103,10 @@
                     loop: false,
                     startPosition: index
                 });
-=======
+            },
+
             goTrainerInfo(e){
                 console.log();
->>>>>>> 7f824b7558b303fb50662862f0490452995b1164
             },
         },
         created() {

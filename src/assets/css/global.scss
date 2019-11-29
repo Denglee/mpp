@@ -2,7 +2,6 @@
 /*lideng*/
 
 //公共颜色
-<<<<<<< HEAD
 $color-green:#8cc31f;
 $color-blue:#4e71fe;
 $color-gray:#b6b6b6;
@@ -49,23 +48,11 @@ $bg-path: "../img";
     @include borderRadius4();
 }
 
-
-=======
-$color-green:#8cc31f !global;
-$color-blue:#4e71fe !global;
-$color-gray:#b6b6b6 !global;
-$color-white:#fff !global;
-$color-paleWhite:#f4f4f4 !global;
-$color-orange:#ffa300 !global;
-
-$borderBlue:solid 1px $color-blue !global;
-$borderBorB:solid 1px $color-paleWhite !global;
-
 @mixin samllGray{
     color: $color-gray;
     font-size: 12px;
 }
->>>>>>> 836ae5bad4ac90a0a9e5aedb60ad969485cabc95
+
 * {
     margin: 0;
     padding: 0;
