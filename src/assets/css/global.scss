@@ -19,7 +19,7 @@ $bg-path: "../img";
 //}
 
 //嵌入
-@mixin borderRadius4($conor: 4px){ // 定义 mixin 并设置默认值 5px
+@mixin borderRadius($conor: 4px){ // 定义 mixin 并设置默认值 5px
     -webkit-border-radius: $conor;
     -moz-border-radius: $conor;
     border-radius: $conor;
@@ -44,8 +44,8 @@ $bg-path: "../img";
 @mixin  btn-blue{
     @include  btn();
     background-color: $color-blue;
-    color: $white;
-    @include borderRadius4();
+    color: $color-white;
+    @include borderRadius();
 }
 
 @mixin samllGray{
@@ -150,6 +150,7 @@ input,button{
         position: absolute;
         left: 0;
         font-size: .2rem;
+        padding-left: 2%;
     }
 }
 .goBack{

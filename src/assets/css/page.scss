@@ -8,7 +8,7 @@
 /*banner*/
 .home-swiper {
   height: 1.02rem;
-  @include borderRadius4();
+  @include borderRadius();
   @include marginTop15;
 }
 .mint-swipe-item:nth-child(1){
@@ -176,7 +176,12 @@
 }
 
 /*============ 教练 开始 ============*/
-
+.page-banner{
+  @include borderRadius();
+  width: 100%;
+  @include marginTop15();
+  height: 1.02rem;
+}
 //首页
 .trainer-list {
   .van-row{
@@ -234,16 +239,75 @@
   background:rgba(255,255,255,1);
   box-shadow:0px 1px 16px 0px rgba(211,211,211,1);
   border-radius:10px;
-  padding: .1rem;
+  padding: 4%;
   box-sizing: border-box;
   position: relative;
+  top: .5rem;
+  .tInfo-header-img{
+    margin-top: -.5rem;
+    img{
+      width: 1.15rem;
+      height:1.15rem;
+      @include borderRadius();
+    }
+  }
 }
 .tInfo-item{
   @include  borderBorBot();
   padding-bottom: .1rem;
   margin-bottom: .1rem;
 }
+.tInfo-case-box{
+  @include marginTop20();
+}
+.tInfo-case{
+  position: relative;
+  & > img{
+    height: .6rem;
+    @include borderRadius(5px);
+  }
+  & > span{
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    background:rgba(78,113,254,.8);
+    border-radius:10px 0px 10px 0px;
+    font-size: 12px;
+    color: $color-white;
+    padding: 2px 4px;
+  }
+}
+.btn-tInfo-buy {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  & > button{
+    @include btn-blue();
+    padding:4px .1rem;
+  }
 
+}
+.tInfo-lesson{
+  margin-top: .7rem;
+  .tInfo-lesson-img img{
+    //width:178px;
+    height:.8rem;
+    @include  borderRadius(10px)
+  }
+}
+.stu-header{
+  display: flex;
+  align-items: center;
+  .user-header img{
+    width: .4rem;
+    height: .4rem;
+    @include borderRadius(50%);
+    margin-right: .1rem;
+  }
+}
+.stu-time{
+  text-align: right;
+}
 
 /*== 个人中心 ==*/
 //首页
@@ -259,7 +323,11 @@
 
 .user-header{
   position: relative;
-
+  .user-header img{
+    width: .6rem;
+    height: .6rem;
+    @include borderRadius(50%)
+  }
   .userHead-box{
     //position: absolute;
     margin-top: -.3rem;
@@ -268,15 +336,12 @@
     background-color:$color-white;
     @include userBoxShow();
   }
-  .user-header{
-    width: .6rem;
-    height: .6rem;
-    border-radius: 50%;
-  }
+
   .user-tel{
     @include samllGray();
   }
 }
+
 .user-link{
   li{
     padding: 2% 4%;

@@ -2,7 +2,7 @@
     <div class="main">
         <topBar :title="title"  :routerName="routerName"/>
 
-        <img src="../../assets/img/coueseBanner.png" alt="">
+        <van-image class="page-banner" fit="cover" src="../../assets/img/coueseBanner.png" alt=""></van-image>
 
         <div class="trainer-list">
             <!--教练列表-->
